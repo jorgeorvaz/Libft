@@ -24,7 +24,13 @@ SRCS    = 	ft_isascii.c \
 			ft_strdup.c \
 			ft_substr.c \
 			ft_strjoin.c \
-			ft_itoa.c
+			ft_itoa.c \
+			ft_putchar_fd.c \
+			ft_putstr_fd.c \
+			ft_putendl_fd.c \
+			ft_putnbr_fd.c \
+			ft_strmapi.c \
+			ft_strtrim.c
 OBJS    = ${SRCS:.c=.o}
 NAME    = libft.a
 CC      = cc

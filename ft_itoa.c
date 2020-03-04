@@ -6,13 +6,13 @@
 /*   By: jordonez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 13:06:00 by jordonez          #+#    #+#             */
-/*   Updated: 2020/03/04 14:37:21 by jordonez         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:17:07 by jordonez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long int	ft_size_integer(long int n)
+static long int		ft_size_integer(long int n)
 {
 	long int	i;
 
@@ -27,7 +27,8 @@ long int	ft_size_integer(long int n)
 	return (i);
 }
 
-char	*ft_char(char *ptr, unsigned int n, int is_negative, long int n_size)
+static char			*ft_char(char *ptr, unsigned int n,
+int is_negative, long int n_size)
 {
 	int	i;
 
@@ -43,22 +44,24 @@ char	*ft_char(char *ptr, unsigned int n, int is_negative, long int n_size)
 	return (ptr);
 }
 
-char	*ft_itoa(int n)
+char				*ft_itoa(int n)
 {
-	long int	n_size;
-	char		*ptr;
-	int			is_negative;
-	int			i;
+	long int		n_size;
+	char			*ptr;
+	int				is_negative;
+	unsigned int	number;
 
 	n_size = ft_size_integer(n);
 	is_negative = 0;
 	if (n < 0)
 	{
 		is_negative = 1;
-		n *= -1;
+		number = n * -1;
 	}
-	if (!(ptr = malloc(n_size + 1 + is_negative)))
+	else
+		number = n;
+	if (!(ptr = (char *)malloc(sizeof(char) * (n_size + 1 + is_negative))))
 		return (NULL);
-	ptr = ft_char(ptr, n, is_negative, n_size);
+	ptr = ft_char(ptr, number, is_negative, n_size);
 	return (ptr);
 }
