@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jordonez <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/03/05 16:13:34 by jordonez          #+#    #+#              #
+#    Updated: 2020/03/05 16:17:02 by jordonez         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 SRCS    = 	ft_isascii.c \
  			ft_isprint.c \
 			ft_tolower.c \
@@ -31,7 +43,7 @@ SRCS    = 	ft_isascii.c \
 			ft_putnbr_fd.c \
 			ft_strmapi.c \
 			ft_strtrim.c \
-			ft_split.c
+			ft_split.c 
 OBJS    = ${SRCS:.c=.o}
 NAME    = libft.a
 CC      = cc
