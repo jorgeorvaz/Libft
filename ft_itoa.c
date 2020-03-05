@@ -6,11 +6,12 @@
 /*   By: jordonez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 13:06:00 by jordonez          #+#    #+#             */
-/*   Updated: 2020/03/04 20:17:07 by jordonez         ###   ########.fr       */
+/*   Updated: 2020/03/05 20:34:14 by jordonez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static long int		ft_size_integer(long int n)
 {
@@ -36,8 +37,9 @@ int is_negative, long int n_size)
 	while (i >= 0)
 	{
 		if (i == 0 && is_negative == 1)
-			ptr[i--] = '-';
-		ptr[i--] = n % 10 + '0';
+			ptr[i] = '-';
+		else
+			ptr[i--] = n % 10 + '0';
 		n = n / 10;
 	}
 	ptr[n_size + 1] = '\0';
