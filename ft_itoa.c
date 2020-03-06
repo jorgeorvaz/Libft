@@ -11,16 +11,23 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-static long int		ft_size_integer(long int n)
+static size_t			ft_size_integer(long n)
 {
-	long int	i;
+	size_t	i;
 
+	i = 0;
+	if (n == 0)
+	{
+		i++;
+		return (i);
+	}
 	if (n < 0)
+	{
 		n *= -1;
-	i = 1;
-	while (n > 9)
+		i++;
+	}
+	while (n > 0)
 	{
 		n = n / 10;
 		i++;
@@ -28,42 +35,50 @@ static long int		ft_size_integer(long int n)
 	return (i);
 }
 
-static char			*ft_char(char *ptr, unsigned int n,
-int is_negative, long int n_size)
+static char			*ft_char(char *ptr, long n, int n_size)
 {
-	int	i;
+	size_t		i;
 
-	i = n_size - 1 + is_negative;
-	while (i >= 0)
+	i = n_size - 1;
+	if (n == 0)
+		ptr[0] = '0';
+	if (n < 0)
 	{
-		if (i == 0 && is_negative == 1)
-			ptr[i] = '-';
-		else
-			ptr[i--] = n % 10 + '0';
+		ptr[0] == '-';
+		n = n * -1;
+	}
+	while (n > 0)
+	{
+		ptr[i--] = (n % 10) + '0';
 		n = n / 10;
 	}
-	ptr[n_size + 1] = '\0';
+	ptr[n_size] = '\0';
 	return (ptr);
 }
 
 char				*ft_itoa(int n)
 {
-	long int		n_size;
+	size_t			n_size;
 	char			*ptr;
-	int				is_negative;
-	unsigned int	number;
+	long			number;
 
-	n_size = ft_size_integer(n);
-	is_negative = 0;
-	if (n < 0)
-	{
-		is_negative = 1;
-		number = n * -1;
-	}
-	else
-		number = n;
-	if (!(ptr = (char *)malloc(sizeof(char) * (n_size + 1 + is_negative))))
+	number = n;
+	n_size = ft_size_integer(number);
+	if (!(ptr = (char *)malloc(sizeof(char) * (n_size + 1))))
 		return (NULL);
-	ptr = ft_char(ptr, number, is_negative, n_size);
+	ptr = ft_char(ptr, number, n_size);
 	return (ptr);
+}
+
+#include <stdio.h>
+int	main(void)
+{
+	printf("\nSize: %s", ft_itoa(0));
+	printf("\nSize: %s", ft_itoa(9));
+	printf("\nSize: %s", ft_itoa(9));
+	printf("\nSize: %s", ft_itoa(1987));
+	printf("\nSize: %s", ft_itoa(-19887));
+	printf("\nSize: %s", ft_itoa(2147483647));
+	printf("\nSize: %ld\n", ft_size_integer(-2147483648));	
+	return (0);
 }
