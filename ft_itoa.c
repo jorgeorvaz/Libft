@@ -35,7 +35,7 @@ static size_t			ft_size_integer(long n)
 	return (i);
 }
 
-static char			*ft_char(char *ptr, long n, int n_size)
+static char			*ft_char(char *ptr, long n, size_t n_size)
 {
 	size_t		i;
 
@@ -44,7 +44,7 @@ static char			*ft_char(char *ptr, long n, int n_size)
 		ptr[0] = '0';
 	if (n < 0)
 	{
-		ptr[0] == '-';
+		ptr[0] = '-';
 		n = n * -1;
 	}
 	while (n > 0)
@@ -79,6 +79,6 @@ int	main(void)
 	printf("\nSize: %s", ft_itoa(1987));
 	printf("\nSize: %s", ft_itoa(-19887));
 	printf("\nSize: %s", ft_itoa(2147483647));
-	printf("\nSize: %ld\n", ft_size_integer(-2147483648));	
+	printf("\nSize: %s\n", ft_itoa(-2147483648));	
 	return (0);
 }
