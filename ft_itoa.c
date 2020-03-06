@@ -6,7 +6,7 @@
 /*   By: jordonez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 13:06:00 by jordonez          #+#    #+#             */
-/*   Updated: 2020/03/05 20:34:14 by jordonez         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:18:01 by jordonez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static size_t			ft_size_integer(long n)
 	return (i);
 }
 
-static char			*ft_char(char *ptr, long n, size_t n_size)
+static char				*ft_char(char *ptr, long n, size_t n_size)
 {
 	size_t		i;
 
@@ -56,7 +56,7 @@ static char			*ft_char(char *ptr, long n, size_t n_size)
 	return (ptr);
 }
 
-char				*ft_itoa(int n)
+char					*ft_itoa(int n)
 {
 	size_t			n_size;
 	char			*ptr;
@@ -68,17 +68,4 @@ char				*ft_itoa(int n)
 		return (NULL);
 	ptr = ft_char(ptr, number, n_size);
 	return (ptr);
-}
-
-#include <stdio.h>
-int	main(void)
-{
-	printf("\nSize: %s", ft_itoa(0));
-	printf("\nSize: %s", ft_itoa(9));
-	printf("\nSize: %s", ft_itoa(9));
-	printf("\nSize: %s", ft_itoa(1987));
-	printf("\nSize: %s", ft_itoa(-19887));
-	printf("\nSize: %s", ft_itoa(2147483647));
-	printf("\nSize: %s\n", ft_itoa(-2147483648));	
-	return (0);
 }

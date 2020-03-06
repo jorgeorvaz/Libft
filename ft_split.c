@@ -6,51 +6,40 @@
 /*   By: jordonez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 19:11:14 by jordonez          #+#    #+#             */
-/*   Updated: 2020/03/05 15:55:56 by jordonez         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:50:32 by jordonez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_words(char const *s, char c)
+int		count_words(char const *s, char c)
 {
-	int		i;
-	int		meter;
+	int	act_pos;
+	int	str_count;
 
-	i = 0;
-	meter = 1;
-	while (s[i] == c)
-		i++;
-	if (s[i] == '\0')
-		return (0);
-	while (s[i] != '\0')
+	act_pos = 0;
+	str_count = 0;
+	if (s[act_pos] == c)
+		str_count--;
+	while (s[act_pos] != '\0')
 	{
-		if (s[i] == c)
-		{
-			while (s[i] == c)
-				i++;
-			if (s[i] != '\0')
-				meter++;
-		}
-		i++;
+		if (s[act_pos] == c && s[act_pos + 1] != c && s[act_pos + 1] != '\0')
+			str_count++;
+		act_pos++;
 	}
-	return (meter);
+	str_count++;
+	return (str_count);
 }
 
-static char	*get_words(char const *s, char c)
+char	*get_words(const char *s, char c)
 {
 	char	*word;
-	int		num_letters;
 	int		i;
 
-	num_letters = 0;
 	i = 0;
 	while (s[i] && s[i] != c)
-	{
-		num_letters++;
 		i++;
-	}
-	word = (char *)malloc(sizeof(char) * (num_letters + 1));
+	word = (char *)malloc(sizeof(char) * (i + 1));
 	if (!word)
 		return (NULL);
 	i = 0;
@@ -63,17 +52,17 @@ static char	*get_words(char const *s, char c)
 	return (word);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char	**ptr;
-	int		num_words;
+	int		words;
+	char	**tab;
 	int		i;
 
 	if (!s)
 		return (NULL);
-	num_words = count_words(s, c);
-	ptr = (char **)malloc(sizeof(char *) * (num_words + 1));
-	if (!ptr)
+	words = count_words(s, c);
+	tab = (char **)malloc(sizeof(char*) * (words + 1));
+	if (!tab)
 		return (NULL);
 	i = 0;
 	while (*s)
@@ -82,12 +71,12 @@ char		**ft_split(char const *s, char c)
 			s++;
 		if (*s && *s != c)
 		{
-			ptr[i] = get_words(s, c);
+			tab[i] = get_words(s, c);
 			i++;
 			while (*s && *s != c)
 				s++;
 		}
 	}
-	ptr[i] = NULL;
-	return (ptr);
+	tab[i] = NULL;
+	return (tab);
 }
